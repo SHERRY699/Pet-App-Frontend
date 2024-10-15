@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
-import Register from "@/components/Register";
+import LandingPage from "@/components/Landing";
 
 export default function Index() {
-  return <Register />;
+  return <LandingPage />;
 }
