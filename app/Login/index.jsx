@@ -10,30 +10,31 @@ import {
   ToastAndroid,
 } from "react-native";
 import { useRouter } from "expo-router";
-
 export default function Register() {
   const router = useRouter();
   const [items, setItems] = useState({
     email: "",
-    username: "",
     password: "",
   });
   const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
   const handleSubmit = () => {
-    if (!items.email || !items.password || !items.username) {
+    if (!items.email || !items.password) {
       ToastAndroid.show("All Fields Are Required", ToastAndroid.BOTTOM);
     } else {
       axios
-        .post(`${API_URL}/user/register`, items)
+        .post(`${API_URL}/user/login`, items)
         .then((res) => {
-          console.log("Registration successful:", res.data);
-          ToastAndroid.show("User Registered", ToastAndroid.LONG);
-          router.push("/Login");
+          if (res.status == 200) {
+            ToastAndroid.show("Login", ToastAndroid.SHORT);
+            router.push("/(tabs)/Home");
+          } else {
+            ToastAndroid.show("Not Logged In", ToastAndroid.SHORT);
+          }
         })
         .catch((error) => {
           console.error(
-            "Error during registration:",
+            "Error during Login:",
             error.response ? error.response.data : error.message
           );
         });
@@ -42,7 +43,7 @@ export default function Register() {
 
   return (
     <View style={{ margin: 20 }}>
-      <Text style={styles.heading}>Register 🐶</Text>
+      <Text style={styles.heading}>Login 🐶</Text>
       <Text style={styles.heading}>Let's Get Started</Text>
       <View
         style={{
@@ -53,17 +54,6 @@ export default function Register() {
           marginTop: 80,
         }}
       >
-        <TextInput
-          value={items.username}
-          placeholder="Username"
-          style={styles.input}
-          onChangeText={(value) => {
-            setItems({
-              ...items,
-              username: value,
-            });
-          }}
-        />
         <TextInput
           value={items.email}
           placeholder="Email"
@@ -98,14 +88,10 @@ export default function Register() {
               color: "white",
             }}
           >
-            Register
+            LOGIN
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            router.push("/Login");
-          }}
-        >
+        <TouchableOpacity>
           <Text
             style={{
               fontFamily: "outfit-semibold",
@@ -117,7 +103,7 @@ export default function Register() {
               color: Colors.primary,
             }}
           >
-            Already Have An Account ? Login
+            Don't Have An Account ? Register
           </Text>
         </TouchableOpacity>
       </View>
