@@ -17,6 +17,7 @@ export const pets = [
     sex: "male",
     imageUrl: dog1,
     owner_name: "Robert Alexco",
+    weight: "10 Kg",
   },
   {
     id: 2,
@@ -27,6 +28,7 @@ export const pets = [
     sex: "male",
     imageUrl: dog2,
     owner_name: "Robert Alexco",
+    weight: "20 Kg",
   },
   {
     id: 3,
@@ -37,6 +39,7 @@ export const pets = [
     sex: "male",
     imageUrl: cat1,
     owner_name: " Alex",
+    weight: "30 Kg",
   },
   {
     id: 4,
@@ -47,6 +50,7 @@ export const pets = [
     sex: "male",
     imageUrl: cat2,
     owner_name: "Roberto",
+    weight: "10 Kg",
   },
   {
     id: 5,
@@ -57,6 +61,7 @@ export const pets = [
     type: "Golden Fish",
     imageUrl: fish1,
     owner_name: "Roberto Pale",
+    weight: "10 Kg",
   },
   {
     id: 6,
@@ -67,6 +72,7 @@ export const pets = [
     type: "Golden Fish",
     imageUrl: fish2,
     owner_name: " Pale",
+    weight: "20 Kg",
   },
   {
     id: 7,
@@ -77,6 +83,7 @@ export const pets = [
     type: "Red Canary",
     imageUrl: bird1,
     owner_name: "Alex Pale",
+    weight: "10 Kg",
   },
   {
     id: 8,
@@ -87,5 +94,6 @@ export const pets = [
     type: "Red Canary",
     imageUrl: bird2,
     owner_name: "Roberto Pale",
+    weight: "5 Kg",
   },
 ];

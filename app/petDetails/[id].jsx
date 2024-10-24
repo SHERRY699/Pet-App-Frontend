@@ -6,6 +6,7 @@ import Petinfo from "../../components/Home/Petlist/Petinfo";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Colors from "../../constants/Colors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { pets } from "../../assets/data/data";
 
 export default function PetDetails() {
   const { id } = useLocalSearchParams();
@@ -17,12 +18,17 @@ export default function PetDetails() {
       headerTitle: "",
     });
   });
+  const filtere_data = pets?.filter((item) => item?.id == id);
+  const filtered_data = filtere_data[0];
+
   return (
     <View style={{ margin: 0 }}>
-      <Image source={dog1} style={styles.img} />
+      <Image source={filtered_data?.imageUrl} style={styles.img} />
       <View style={styles.box}>
         <View>
-          <Text style={{ fontFamily: "outfit-bold", fontSize: 30 }}>Goldy</Text>
+          <Text style={{ fontFamily: "outfit-bold", fontSize: 30 }}>
+            {filtered_data?.name}
+          </Text>
           <Text style={{ fontFamily: "outfit", color: "gray", fontSize: 15 }}>
             522 Tyron Street N
           </Text>
@@ -41,14 +47,14 @@ export default function PetDetails() {
           marginTop: 10,
         }}
       >
-        <Petinfo />
-        <Petinfo />
-        <Petinfo />
-        <Petinfo />
+        <Petinfo type="age" data={filtered_data} />
+        <Petinfo type="breed" data={filtered_data} />
+        <Petinfo type="sex" data={filtered_data} />
+        <Petinfo type="weight" data={filtered_data} />
       </View>
       <View>
         <Text style={{ fontFamily: "outfit", fontSize: 25, marginTop: 4 }}>
-          About Goldy
+          About {filtered_data?.name}
         </Text>
         <Text
           style={{
@@ -95,7 +101,10 @@ export default function PetDetails() {
             }}
           />
           <View>
-            <Text style={{ fontFamily: "outfit-bold" }}>Jhon Carry</Text>
+            <Text style={{ fontFamily: "outfit-bold" }}>
+              {" "}
+              {filtered_data?.owner_name}
+            </Text>
             <Text style={{ fontFamily: "outfit", color: "gray" }}>
               Pet Owner
             </Text>
